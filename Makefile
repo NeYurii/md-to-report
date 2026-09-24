@@ -9,5 +9,5 @@ copy: dirs
 
 .PHONY: dirs
 dirs:
-	mkdir -p ${DST_DIR}/defaults
-	mkdir -p ${DST_DIR}/templates
+	@mkdir -p ${DST_DIR}/defaults
+	@mkdir -p ${DST_DIR}/templates
