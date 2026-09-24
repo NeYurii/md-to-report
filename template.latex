@@ -1,0 +1,210 @@
+$document-metadata.latex()$
+$passoptions.latex()$
+
+% Page style, reference in KOMA Script docs
+\documentclass[
+  usegeometry=true,
+  fontsize=14pt,
+]{$documentclass$} % documentclass must stay in markdown, or some things will break
+
+% Page margins (for main document part)
+\usepackage[
+  portrait,
+  paper=a4paper,
+  top=20mm,
+  bottom=10mm,
+  left=25mm,
+  right=10mm
+]{geometry}
+
+% Some needed packages (was there by default)
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{fvextra}
+$fonts.latex()$
+$font-settings.latex()$
+$common.latex()$
+
+%%% Text settings %%%
+
+\usepackage[onehalfspacing]{setspace} % Default line spacing (1.5) (not exactly)
+
+% Table and figure caption format
+\usepackage{caption}
+\DeclareCaptionFormat{custom}{#1 #2 #3}
+\DeclareCaptionLabelSeparator{dashsep}{-}
+\captionsetup{format=custom,labelsep=dashsep}
+\captionsetup[figure]{name=Рисунок,position=below}
+\counterwithout{figure}{section}
+\captionsetup[table]{name=Таблиця,position=above}
+\counterwithout{table}{section}
+
+% Headings setup (for 2-nd level)
+\RedeclareSectionCommand[
+  level=1,
+  font=\textbf\normalsize\rmfamily\centering,
+  beforeskip=1pt,
+  afterskip=1pt,
+  indent=0pt
+]{section}
+
+% Code snippets style
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  fontsize=\footnotesize,
+  baselinestretch=1,
+  commandchars=\\\{\}
+}
+
+%% % Tables setup (incomplete, should also add vertical lines
+\AtBeginEnvironment{longtable}{
+  \small
+  \rmfamily
+  \singlespacing
+}
+
+$after-header-includes.latex()$
+$hypersetup.latex()$
+
+$--
+$-- section numbering
+$--
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+
+
+$if(pdf-trailer-id)$
+\ifXeTeX
+\special{pdf:trailerid [ $pdf-trailer-id$ ]}
+\fi
+\ifPDFTeX
+\pdftrailerid{}
+\pdftrailer{/ID [ $pdf-trailer-id$ ]}
+\fi
+\ifLuaTeX
+\pdfvariable trailerid {[ $pdf-trailer-id$ ]}
+\fi
+$endif$
+
+
+
+\newcommand{\emptyline}{\vspace*{25pt}} % font size (14) * line height (1.5) * base line height (1.2) ~= 25
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Title page %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newgeometry{top=20mm,bottom=20mm,left=25mm,right=10mm}
+\centering
+
+\textbf{Міністерство освіти і науки України}
+\emptyline
+
+Фаховий коледж зварювання та електроніки імені Є.О. Патона
+\emptyline\emptyline\emptyline\emptyline\emptyline
+
+\textbf{ЗВІТ}\emptyline
+
+\textbf{З ЛАБОРАТОРНОЇ РОБОТИ №$worknumber$}\emptyline
+
+навчальної дисципліни\\
+$subjectname$\\
+\underline{ФКЗЕ. $specialtycode$$subjectabbr$$listnumber$. $worknumber$ЛР}
+\emptyline\emptyline\emptyline\emptyline\emptyline
+
+\raggedright % left text align
+\setlength{\parindent}{8.5cm} % Paragraph offset
+
+Студент\hspace{19pt}\underline{$author$}\\
+Група\hspace{33pt}\underline{$group$}\\
+Перевірив\hspace{6pt}\underline{$lecturer$}\\
+
+\vfill
+\centering
+
+$year$
+
+\raggedright % left text align
+\restoregeometry
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Document body %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{1cm} % Paragraph offset
+
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+
+$if(title)$
+\maketitle
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+{
+$if(colorlinks)$
+$if(toccolor)$
+\hypersetup{linkcolor=$toccolor$}
+$endif$
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+$if(lot)$
+\listoftables
+$endif$
+$if(has-frontmatter)$
+\mainmatter
+$endif$
+$body$
+
+$if(has-frontmatter)$
+\backmatter
+$endif$
+$if(nocite-ids)$
+\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
+$endif$
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(has-chapters)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}
