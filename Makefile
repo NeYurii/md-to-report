@@ -1,13 +1,12 @@
-DST_DIR := ~/.local/share/pandoc
+DATA_DIR := ~/.local/share/pandoc
+DEFAULTS_DIR := ${DATA_DIR}/defaults
+TEMPLATES_DIR := ${DATA_DIR}/templates
+FILTERS_DIR := ${DATA_DIR}/filters
 
 default: copy
 
 .PHONY: copy
-copy: dirs
-	@cp -fv lr-report.latex ${DST_DIR}/templates/lr-report.latex
-	@cp -fv lr-report.yaml ${DST_DIR}/defaults/lr-report.yaml
-
-.PHONY: dirs
-dirs:
-	@mkdir -p ${DST_DIR}/defaults
-	@mkdir -p ${DST_DIR}/templates
+copy:
+	install -m 644 -D -t ${TEMPLATES_DIR} lr-report.latex
+	install -m 644 -D -t ${DEFAULTS_DIR} lr-report.yaml
+	install -m 644 -D -t ${FILTERS_DIR} tables-rules.lua

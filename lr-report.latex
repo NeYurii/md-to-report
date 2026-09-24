@@ -11,6 +11,7 @@ $passoptions.latex()$
   fontsize=14pt,
 ]{$documentclass$} % documentclass must stay in markdown, or some things will be broken
 
+
 % No page numbers
 \pagestyle{empty}
 
@@ -28,9 +29,6 @@ $passoptions.latex()$
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \usepackage{fvextra}
-$fonts.latex()$
-$font-settings.latex()$
-$common.latex()$
 
 % Set figure placement
 \usepackage{float}
@@ -38,11 +36,11 @@ $common.latex()$
 \def\fps@figure{H} % defult: htbp
 \makeatother
 
-%%% Text settings %%%
-
-\usepackage[onehalfspacing]{setspace} % Default line spacing (1.5) (not exactly)
+% Default line spacing (1.5) (not exactly)
+\usepackage[onehalfspacing]{setspace}
 
 % Table and figure caption format
+\usepackage{caption}
 \DeclareCaptionFormat{custom}{#1 #2 #3}
 \DeclareCaptionLabelSeparator{dashsep}{-}
 \captionsetup{format=custom,labelsep=dashsep}
@@ -74,8 +72,6 @@ $common.latex()$
   \singlespacing
 }
 
-$after-header-includes.latex()$
-$hypersetup.latex()$
 
 % section numbering
 $if(numbersections)$
@@ -83,6 +79,15 @@ $if(numbersections)$
 $else$
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
+
+$fonts.latex()$
+$font-settings.latex()$
+$common.latex()$
+$for(header-includes)$
+$header-includes$
+$endfor$
+$after-header-includes.latex()$
+$hypersetup.latex()$
 
 $if(pdf-trailer-id)$
 \ifXeTeX
@@ -144,6 +149,11 @@ $year$
 \raggedright % left text align
 \setlength{\parindent}{1cm} % Paragraph offset
 
+$for(include-before)$
+$include-before$
+$endfor$
+
+
 $if(topic)$
 \textbf{Тема:} $topic$
 $endif$
@@ -155,6 +165,10 @@ $endif$
 $if(equipment)$
 \textbf{Обладнання:} $equipment$
 $endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
 
 $body$
 

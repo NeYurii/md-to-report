@@ -25,7 +25,7 @@ pandoc -o report.pdf report.md --template=./lr-report.latex --defaults=./lr-repo
 # TODO
 
 - Figure out required latex packages (except pandoc and luatex) for reproducing setup
-- Fix table formatting (add vertical lines, make heading bold)
+- Fix table formatting (make heading bold)
 
 # Reference
 
@@ -33,4 +33,5 @@ pandoc -o report.pdf report.md --template=./lr-report.latex --defaults=./lr-repo
 - [KOMA Script documentation](https://ctan.uni-eszterhazy.hu/tex-archive/macros/latex/contrib/koma-script/doc/scrguide-en.pdf#desc%3Amaincls.cmd.setkomafont)
 - [Pandoc manual](https://pandoc.org/MANUAL.html)
 - [Pandoc latex templates](https://pandoc-templates.org)
+- [common.latex() content](https://github.com/jgm/pandoc-templates/blob/master/common.latex)
 - Other latex packages documentation can be found from [CTAN](https://ctan.org/pkg)
