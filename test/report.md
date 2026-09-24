@@ -1,7 +1,9 @@
 ---
 documentclass: scrreprt
-pagestyle: empty
 indent: true
+header-includes:
+  - \usepackage{float}
+float-placement: H
 
 mainfont: Liberation Serif
 sansfont: Liberation Sans
@@ -19,6 +21,10 @@ subjectabbr: SN
 
 worknumber: 17
 listnumber: 4
+
+topic: Тема
+objective: Мета
+equipment: Обладнання
 ---
 
 ## Хід роботи
@@ -61,3 +67,5 @@ const opts = @import("options.zig");
 ![Порядок колонок за ключовим словом](./assets/keyword_order.png)
 
 ![Порядок колонок за ключовим словом](./assets/keyword_order.png)
+
+src/algorithms/table_simple.zig

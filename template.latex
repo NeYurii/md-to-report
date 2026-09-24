@@ -1,11 +1,18 @@
 $document-metadata.latex()$
 $passoptions.latex()$
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% Style settings %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Page style, reference in KOMA Script docs
 \documentclass[
   usegeometry=true,
   fontsize=14pt,
 ]{$documentclass$} % documentclass must stay in markdown, or some things will break
+
+% No page numbers
+\pagestyle{empty}
 
 % Page margins (for main document part)
 \usepackage[
@@ -17,21 +24,91 @@ $passoptions.latex()$
   right=10mm
 ]{geometry}
 
-% Some needed packages (was there by default)
-\usepackage{fontspec}
+% Some needed packages loading
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \usepackage{fvextra}
 $fonts.latex()$
 $font-settings.latex()$
-$common.latex()$
+%% Contents of common.latex() variable %%
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+
+% Set default figure placement
+\usepackage{float}
+\def\fps@figure{H} % defult: htbp
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 %%% Text settings %%%
 
 \usepackage[onehalfspacing]{setspace} % Default line spacing (1.5) (not exactly)
 
 % Table and figure caption format
-\usepackage{caption}
 \DeclareCaptionFormat{custom}{#1 #2 #3}
 \DeclareCaptionLabelSeparator{dashsep}{-}
 \captionsetup{format=custom,labelsep=dashsep}
@@ -40,12 +117,12 @@ $common.latex()$
 \captionsetup[table]{name=Таблиця,position=above}
 \counterwithout{table}{section}
 
-% Headings setup (for 2-nd level)
+% Headings setup
 \RedeclareSectionCommand[
   level=1,
   font=\textbf\normalsize\rmfamily\centering,
-  beforeskip=1pt,
-  afterskip=1pt,
+  beforeskip=33.6pt, % font size (14) * line height (2) * base line height (1.2) = 33.6
+  afterskip=33.6pt,
   indent=0pt
 ]{section}
 
@@ -56,7 +133,7 @@ $common.latex()$
   commandchars=\\\{\}
 }
 
-%% % Tables setup (incomplete, should also add vertical lines
+% Tables setup (incomplete, should also add vertical lines
 \AtBeginEnvironment{longtable}{
   \small
   \rmfamily
@@ -66,15 +143,12 @@ $common.latex()$
 $after-header-includes.latex()$
 $hypersetup.latex()$
 
-$--
-$-- section numbering
-$--
+% section numbering
 $if(numbersections)$
 \setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
 $else$
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
-
 
 $if(pdf-trailer-id)$
 \ifXeTeX
@@ -89,9 +163,7 @@ $if(pdf-trailer-id)$
 \fi
 $endif$
 
-
-
-\newcommand{\emptyline}{\vspace*{25pt}} % font size (14) * line height (1.5) * base line height (1.2) ~= 25
+\newcommand{\emptyline}{\vspace*{25.2pt}} % font size (14) * line height (1.5) * base line height (1.2) = 25.2
 
 \begin{document}
 
@@ -138,73 +210,12 @@ $year$
 
 \setlength{\parindent}{1cm} % Paragraph offset
 
-$if(has-frontmatter)$
-\frontmatter
+\textbf{Тема:} $topic$\\
+\textbf{Мета:} $objective$\\
+$if(equipment)$
+\textbf{Обладнання:} $equipment$
 $endif$
 
-$if(title)$
-\maketitle
-$if(abstract)$
-\begin{abstract}
-$abstract$
-\end{abstract}
-$endif$
-$endif$
-
-$for(include-before)$
-$include-before$
-
-$endfor$
-$if(toc)$
-$if(toc-title)$
-\renewcommand*\contentsname{$toc-title$}
-$endif$
-{
-$if(colorlinks)$
-$if(toccolor)$
-\hypersetup{linkcolor=$toccolor$}
-$endif$
-$endif$
-\setcounter{tocdepth}{$toc-depth$}
-\tableofcontents
-}
-$endif$
-$if(lof)$
-\listoffigures
-$endif$
-$if(lot)$
-\listoftables
-$endif$
-$if(has-frontmatter)$
-\mainmatter
-$endif$
 $body$
 
-$if(has-frontmatter)$
-\backmatter
-$endif$
-$if(nocite-ids)$
-\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
-$endif$
-$if(natbib)$
-$if(bibliography)$
-$if(biblio-title)$
-$if(has-chapters)$
-\renewcommand\bibname{$biblio-title$}
-$else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
-
-$endif$
-$endif$
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
-$endif$
-$for(include-after)$
-$include-after$
-
-$endfor$
 \end{document}
