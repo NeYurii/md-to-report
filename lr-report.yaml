@@ -1,0 +1,5 @@
+pdf-engine: lualatex
+template: lr-report.latex
+variables:
+  documentclass: scrreprt
+  indent: true

@@ -1,10 +1,4 @@
 ---
-documentclass: scrreprt
-indent: true
-header-includes:
-  - \usepackage{float}
-float-placement: H
-
 mainfont: Liberation Serif
 sansfont: Liberation Sans
 monofont: Liberation Mono

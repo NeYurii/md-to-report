@@ -2,9 +2,24 @@
 
 Pandoc + lualatex settings for generating college lab work reports from markdown
 
-To compile pdf run:  
+# Installing
+
+Run `make`
+
+# Usage
+
+Use `test/report.md` as reference, most variables in header there are mandatory
+
+To compile pdf from markdown:  
+
 ```shell
-pandoc -o report.pdf report.md --pdf-engine=lualatex --template ./template.latex
+pandoc -o report.pdf report.md --defaults=lr-report
+```
+
+Without installation:
+
+```shell
+pandoc -o report.pdf report.md --template=./lr-report.latex --defaults=./lr-report.yaml
 ```
 
 # TODO
