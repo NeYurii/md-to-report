@@ -25,7 +25,7 @@ pandoc -o report.pdf report.md --template=./lr-report.latex --defaults=./lr-repo
 # TODO
 
 - Figure out required latex packages (except pandoc and luatex) for reproducing setup
-- Fix table formatting (make heading bold)
+- Fix table formatting (make heading bold). But really you should just manually set table headings to bold
 
 # Reference
 
