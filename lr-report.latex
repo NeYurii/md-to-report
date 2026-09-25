@@ -11,7 +11,6 @@ $passoptions.latex()$
   fontsize=14pt,
 ]{$documentclass$} % documentclass must stay in markdown, or some things will be broken
 
-
 % No page numbers
 \pagestyle{empty}
 
@@ -29,6 +28,12 @@ $passoptions.latex()$
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \usepackage{fvextra}
+$fonts.latex()$
+$font-settings.latex()$
+$common.latex()$
+$for(header-includes)$
+$header-includes$
+$endfor$
 
 % Set figure placement
 \usepackage{float}
@@ -36,18 +41,9 @@ $passoptions.latex()$
 \def\fps@figure{H} % defult: htbp
 \makeatother
 
-% Default line spacing (1.5) (not exactly)
-\usepackage[onehalfspacing]{setspace}
-
-% Table and figure caption format
-\usepackage{caption}
-\DeclareCaptionFormat{custom}{#1 #2 #3}
-\DeclareCaptionLabelSeparator{dashsep}{-}
-\captionsetup{format=custom,labelsep=dashsep}
-\captionsetup[figure]{name=Рисунок,position=below}
-\counterwithout{figure}{section}
-\captionsetup[table]{name=Таблиця,position=above}
-\counterwithout{table}{section}
+% Default line spacing (1.5)
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.45} % corresponds to office's 1.5
 
 % Headings setup
 \RedeclareSectionCommand[
@@ -60,18 +56,28 @@ $passoptions.latex()$
 
 % Code snippets style
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-  fontsize=\footnotesize,
+  fontsize=\setstretch{0.9}\footnotesize,
   baselinestretch=1,
   commandchars=\\\{\}
 }
 
-% Tables setup (incomplete, should also add vertical lines
+% Table and figure caption format
+\usepackage{caption}
+\DeclareCaptionFormat{custom}{#1 #2 #3}
+\DeclareCaptionLabelSeparator{dashsep}{-}
+\captionsetup{format=custom,labelsep=dashsep}
+\captionsetup[figure]{name=Рисунок,position=below}
+\counterwithout{figure}{section}
+\captionsetup[table]{name=Таблиця,position=above}
+\counterwithout{table}{section}
+
+% Tables setup
+%% \usepackage{multirow}
 \AtBeginEnvironment{longtable}{
+  \setstretch{0.9}
   \small
   \rmfamily
-  \singlespacing
 }
-
 
 % section numbering
 $if(numbersections)$
@@ -80,12 +86,7 @@ $else$
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 $endif$
 
-$fonts.latex()$
-$font-settings.latex()$
-$common.latex()$
-$for(header-includes)$
-$header-includes$
-$endfor$
+
 $after-header-includes.latex()$
 $hypersetup.latex()$
 
