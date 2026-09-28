@@ -28,6 +28,7 @@ $passoptions.latex()$
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \usepackage{fvextra}
+\usepackage{ragged2e}
 $fonts.latex()$
 $font-settings.latex()$
 $common.latex()$
@@ -47,12 +48,17 @@ $endfor$
 
 % Headings setup
 \RedeclareSectionCommand[
-  level=1,
   font=\textbf\normalsize\rmfamily\centering,
   beforeskip=33.6pt, % font size (14) * line height (2) * base line height (1.2) = 33.6pt
   afterskip=33.6pt,
   indent=0pt
 ]{section}
+
+\RedeclareSectionCommand[
+  font=\normalfont\normalsize\rmfamily\flushleft,
+  beforeskip=1pt,
+  afterskip=2pt
+]{subsection}
 
 % Code snippets style
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
@@ -148,6 +154,7 @@ $year$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \raggedright % left text align
+\justifying
 \setlength{\parindent}{1cm} % Paragraph offset
 
 $for(include-before)$
