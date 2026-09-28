@@ -34,4 +34,5 @@ pandoc -o report.pdf report.md --template=./lr-report.latex --defaults=./lr-repo
 - [Pandoc manual](https://pandoc.org/MANUAL.html)
 - [Pandoc latex templates](https://pandoc-templates.org)
 - [common.latex() content](https://github.com/jgm/pandoc-templates/blob/master/common.latex)
+- [Setting up paragraphs](https://ftp.fi.muni.cz/pub/tex/CTAN/macros/latex/contrib/ragged2e/ragged2e.pdf)
 - Other latex packages documentation can be found from [CTAN](https://ctan.org/pkg)

@@ -3,7 +3,5 @@ template: lr-report.latex
 filters:
 - tables-rules.lua
 variables:
-  tables-vrules: true
-  tables-hrules: true
   documentclass: scrreprt
   indent: true

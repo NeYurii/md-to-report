@@ -44,25 +44,25 @@ $endfor$
 
 % Default line spacing (1.5)
 \usepackage[nodisplayskipstretch]{setspace}
-\setstretch{1.45} % corresponds to office's 1.5
+\renewcommand{\onehalfspacing}{\setstretch{1.45}} % corresponds to office's 1.5
+\renewcommand{\singlespacing}{\setstretch{0.9}} % corresponds to office's 1
 
 % Headings setup
 \RedeclareSectionCommand[
-  font=\textbf\normalsize\rmfamily\centering,
+  font=\textbf\normalsize\rmfamily\Centering,
   beforeskip=33.6pt, % font size (14) * line height (2) * base line height (1.2) = 33.6pt
   afterskip=33.6pt,
   indent=0pt
 ]{section}
-
 \RedeclareSectionCommand[
-  font=\normalfont\normalsize\rmfamily\flushleft,
+  font=\normalfont\normalsize\rmfamily\RaggedRight,
   beforeskip=1pt,
-  afterskip=2pt
+  afterskip=1pt
 ]{subsection}
 
 % Code snippets style
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-  fontsize=\setstretch{0.9}\footnotesize,
+  fontsize=\singlespacing\footnotesize,
   baselinestretch=1,
   commandchars=\\\{\}
 }
@@ -71,19 +71,35 @@ $endfor$
 \usepackage{caption}
 \DeclareCaptionFormat{custom}{#1 #2 #3}
 \DeclareCaptionLabelSeparator{dashsep}{-}
-\captionsetup{format=custom,labelsep=dashsep}
-\captionsetup[figure]{name=Рисунок,position=below}
+\captionsetup{
+  format=custom,
+  singlelinecheck=false,
+  labelsep=dashsep,
+  font={normalsize,onehalfspacing}
+}
 \counterwithout{figure}{section}
-\captionsetup[table]{name=Таблиця,position=above}
+\captionsetup[figure]{
+  justification=Centering,
+  position=below,
+  name=Рисунок
+}
 \counterwithout{table}{section}
+\captionsetup[table]{
+  justification=RaggedRight,
+  hangindent=2.64cm,
+  position=above,
+  name=Таблиця
+}
 
 % Tables setup
-%% \usepackage{multirow}
+\usepackage{multirow}
 \AtBeginEnvironment{longtable}{
-  \setstretch{0.9}
+  \singlespacing
   \small
   \rmfamily
 }
+\setlength{\LTpost}{0pt}
+\setlength{\LTpre}{33.6pt} % font size (14) * line height (2) * base line height (1.2) = 25.2
 
 % section numbering
 $if(numbersections)$
@@ -111,6 +127,8 @@ $endif$
 
 \newcommand{\emptyline}{\vspace*{25.2pt}} % font size (14) * line height (1.5) * base line height (1.2) = 25.2
 
+\onehalfspacing
+
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -118,34 +136,36 @@ $endif$
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \newgeometry{top=20mm,bottom=20mm,left=25mm,right=10mm}
-\centering
 
-\textbf{Міністерство освіти і науки України}
-\emptyline
+\begin{Center}
+    \textbf{Міністерство освіти і науки України}
+    \emptyline
 
-Фаховий коледж зварювання та електроніки імені Є.О. Патона
-\emptyline\emptyline\emptyline\emptyline\emptyline
+    Фаховий коледж зварювання та електроніки імені Є.О. Патона
+    \emptyline\emptyline\emptyline\emptyline\emptyline
 
-\textbf{ЗВІТ}\emptyline
+    \textbf{ЗВІТ}\emptyline
 
-\textbf{З ЛАБОРАТОРНОЇ РОБОТИ №$worknumber$}\emptyline
+    \textbf{З ЛАБОРАТОРНОЇ РОБОТИ №$worknumber$}\emptyline
 
-навчальної дисципліни\\
-$subjectname$\\
-\underline{ФКЗЕ. $specialtycode$$subjectabbr$$listnumber$. $worknumber$ЛР}
-\emptyline\emptyline\emptyline\emptyline\emptyline
+    навчальної дисципліни\\
+    $subjectname$\\
+    \underline{ФКЗЕ. $specialtycode$$subjectabbr$$listnumber$. $worknumber$ЛР}
+    \emptyline\emptyline\emptyline\emptyline\emptyline
+\end{Center}
 
-\raggedright % left text align
-\setlength{\parindent}{8.5cm} % Paragraph offset
-
-Студент\hspace{19pt}\underline{$author$}\\
-Група\hspace{33pt}\underline{$group$}\\
-Перевірив\hspace{6pt}\underline{$lecturer$}\\
+\setlength{\RaggedRightLeftskip}{8.5cm}
+\begin{FlushLeft} % Yes, FlushLeft uses RaggedRight
+    Студент\hspace{19pt}\underline{$author$}\\
+    Група\hspace{33pt}\underline{$group$}\\
+    Перевірив\hspace{6pt}\underline{$lecturer$}\\
+\end{FlushLeft}
 
 \vfill
-\centering
 
-$year$
+\begin{Center}
+    $year$
+\end{Center}
 
 \restoregeometry
 
@@ -153,14 +173,15 @@ $year$
 %%%%%% Document body %%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\raggedright % left text align
-\justifying
-\setlength{\parindent}{1cm} % Paragraph offset
-
 $for(include-before)$
 $include-before$
 $endfor$
 
+\setlength{\RaggedRightLeftskip}{0pt}
+\setlength{\RaggedRightParindent}{1cm}
+
+\setlength{\JustifyingParindent}{1cm} % Paragraph offset
+\justifying
 
 $if(topic)$
 \textbf{Тема:} $topic$
@@ -179,5 +200,10 @@ $include-after$
 $endfor$
 
 $body$
+
+$if(conclusion)$
+\emptyline
+\textbf{Висновок:} $conclusion$
+$endif$
 
 \end{document}

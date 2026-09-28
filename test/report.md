@@ -1,7 +1,4 @@
 ---
-tables-vrules: true
-tables-hrules: true
-
 mainfont: Liberation Serif
 sansfont: Liberation Sans
 monofont: Liberation Mono
