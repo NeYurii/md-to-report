@@ -92,7 +92,6 @@ $endfor$
 }
 
 % Tables setup
-\usepackage{multirow}
 \AtBeginEnvironment{longtable}{
   \singlespacing
   \small
