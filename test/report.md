@@ -11,15 +11,22 @@ lecturer: Lecturer
 
 specialtycode: 123
 subjectname: SUBJECT NAME
-subjectabbr: SN
+subjectacronym: SN
 
 worknumber: 17
 listnumber: 4
 
-topic: Тема
-objective: Мета
-equipment: Обладнання
-conclusion: Висновок
+topic: >
+  Тема
+
+objective: >
+  Мета
+
+equipment: >
+  Обладнання
+
+conclusion: >
+  Висновок
 ---
 
 ## Хід роботи
@@ -27,7 +34,6 @@ conclusion: Висновок
 1 Отримати в викладача номер індивідуального варіанта.
 
 Long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text
-
 Long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text
 
 2 Реалізувати просту шифруючу таблицю (запис по рядках, читання по стовпцях).
@@ -59,7 +65,7 @@ const opts = @import("options.zig");
 
 : Test table 2
 
-| **Heading 1**       | **Heading 2**       | **Heading 3**           |
+| Heading 1           | Heading 2           | Heading 3               |
 | ------------------- | :-----------------: | ----------------------: |
 | This is Contents 1  | This is Contents 2  | This is Contents 3      |
 | This is Contents 1  | This is Contents 2  | This is Contents 3      |

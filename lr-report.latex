@@ -92,11 +92,7 @@ $endfor$
 }
 
 % Tables setup
-\AtBeginEnvironment{longtable}{
-  \singlespacing
-  \small
-  \rmfamily
-}
+\AtBeginEnvironment{longtable}{\singlespacing\small\rmfamily}
 \setlength{\LTpost}{0pt}
 \setlength{\LTpre}{33.6pt} % font size (14) * line height (2) * base line height (1.2) = 25.2
 
@@ -149,7 +145,7 @@ $endif$
 
     навчальної дисципліни\\
     $subjectname$\\
-    \underline{ФКЗЕ. $specialtycode$$subjectabbr$$listnumber$. $worknumber$ЛР}
+    \underline{ФКЗЕ. $specialtycode$$subjectacronym$$listnumber$. $worknumber$ЛР}
     \emptyline\emptyline\emptyline\emptyline\emptyline
 \end{Center}
 
