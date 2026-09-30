@@ -1,24 +1,15 @@
 --[[
-    tables-vrules - adds vertical rules to tables for latex output
+    table-vrules - adds vertical rules to tables for latex output
 
     Original source: https://github.com/chrisaga/hk-pandoc-filters
     Copyright:       © 2026 NeYurii <yuriizkhr@gmail.com>
     License:         MIT
     Credits:         marijnschraagen for the original Latex hack,
-                     Christophe Agathon for extending the hack,
-                     Mistrall for adding multirow tables support
+                     Christophe Agathon for extending the hack
     Output:          latex, pdf.
 --]]
 
 local List = require 'pandoc.List'
-
--- local vars = {}
-
--- Get vars from metadata
-function get_vars(meta)
-    -- vars.vrules = meta['tables-vrules']
-    -- vars.hrules = meta['tables-hrules']
-end
 
 function repl_midrules(m1, m2)
     if m2:match('^\\[%w]+rule') then
@@ -257,41 +248,31 @@ function Table(table)
     local returned_list
     local begin_env, env_content, end_env
 
-    --if not vars.vrules and not vars.hrules then return nil end
-
     if FORMAT:match 'latex' then
-
         -- Get latex code for the whole table
         begin_env, env_content, end_env =
-            pandoc.write ( pandoc.Pandoc({table}),'latex' )
+            pandoc.write(pandoc.Pandoc({table}), 'latex')
                 :match('(\\begin{longtable}%b[]%b{})(.*)(\\end{longtable})')
 
         -- Rewrite column definition to add vertical rules if needed
         -- N.B. Pandoc suppresses left and right spacing with @{}
-        --if vars.vrules then
-            -- Fix columns definitions in longtable environment
-            begin_env = begin_env:gsub('(%b{})$', fix_colsdefs)
-            --print('#' .. begin_env ..'#')
-            -- Fix multicol cells if any
-            env_content=env_content:gsub('(\\multicolumn%b{})(%b{})(%b{})',
-                                         fix_multicol)
-        --end
+        -- Fix columns definitions in longtable environment
+        begin_env = begin_env:gsub('(%b{})$', fix_colsdefs)
 
-        -- Add \midrules / \clines after each row, taking \multirow into
-        -- account
-        --if vars.hrules then
-            local ncols = count_spec_columns(begin_env:match('%b{}$') or '')
-            env_content = add_hrules(env_content, ncols)
-            env_content = env_content
-                :gsub('(\\begin{minipage}%b[])(%b{})(.*\\end{minipage})',
-                      pad_minipage)
-            --print('#' .. env_content ..'#')
-        --end
+        -- Fix multicol cells if any
+        env_content = env_content:gsub('(\\multicolumn%b{})(%b{})(%b{})',
+                                       fix_multicol)
+
+        -- Add \midrules / \clines after each row, taking \multirow into account
+        local ncols = count_spec_columns(begin_env:match('%b{}$') or '')
+        env_content = add_hrules(env_content, ncols)
+        env_content = env_content
+            :gsub('(\\begin{minipage}%b[])(%b{})(.*\\end{minipage})',
+                  pad_minipage)
 
         -- Return modified latex code as a raw block
-        --
         returned_list = List:new{pandoc.RawBlock('tex',
-                                                 begin_env .. env_content .. end_env)}
+                                                 begin_env..env_content..end_env)}
     end
     return returned_list
 end
@@ -300,7 +281,6 @@ function Meta(meta)
     -- We have to add this since Pandoc doesn't because there are no
     -- table anymore in the AST. We converted them in RawBlocks
 
-    --if not vars.vrules and not vars.hrules then return nil end
     includes = [[
 %begin tables-vrules.lua
 \usepackage{longtable,booktabs,array}
@@ -329,4 +309,7 @@ function Meta(meta)
     return meta
 end
 
-return {{Meta = get_vars}, {Table = Table}, {Meta = Meta}}
+return {
+    Table = Table,
+    Meta = Meta,
+}

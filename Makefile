@@ -9,4 +9,5 @@ default: copy
 copy:
 	install -m 644 -D -t ${TEMPLATES_DIR} lr-report.latex
 	install -m 644 -D -t ${DEFAULTS_DIR} lr-report.yaml
-	install -m 644 -D -t ${FILTERS_DIR} tables-rules.lua
+	install -m 644 -D -t ${FILTERS_DIR} table-bold-head.lua
+	install -m 644 -D -t ${FILTERS_DIR} table-vrules.lua
