@@ -45,6 +45,27 @@ const Io = std.Io;
 const opts = @import("options.zig");
 ```
 
+Hello world in janet:
+
+```{.include-as-code-block .janet}
+hello.janet
+```
+
+Hello world in c: 
+
+```{.include-as-code-block .c}
+hello.c
+```
+
+External chapter:
+
+
+``` {.include shift-heading-level-by=1}
+// headings in included documents are shifted down a level,
+// a level 1 heading becomes level 2.
+external-chapter.md
+```
+
 ### Результати тестування
 
 ![Порядок колонок за ключовим словом](./assets/keyword_order.png)
