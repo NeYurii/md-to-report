@@ -29,14 +29,14 @@ conclusion: >
   Висновок
 ---
 
-## Хід роботи
+# Хід роботи
 
-1 Отримати в викладача номер індивідуального варіанта.
+Отримати в викладача номер індивідуального варіанта.
 
 Long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text
 Long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text
 
-2 Реалізувати просту шифруючу таблицю (запис по рядках, читання по стовпцях).
+Реалізувати просту шифруючу таблицю (запис по рядках, читання по стовпцях).
 
 ```zig
 //! Write by rows, read by cols
@@ -45,15 +45,15 @@ const Io = std.Io;
 const opts = @import("options.zig");
 ```
 
-Hello world in janet:
+## Hello world in janet:
 
-```{.include-as-code-block .janet}
+```janet {.include-as-code-block}
 hello.janet
 ```
 
-Hello world in c: 
+### Hello world in c: 
 
-```{.include-as-code-block .c}
+```c {.include-as-code-block}
 hello.c
 ```
 
@@ -66,11 +66,13 @@ External chapter:
 external-chapter.md
 ```
 
-### Результати тестування
+## Результати тестування
 
 ![Порядок колонок за ключовим словом](./assets/keyword_order.png)
 
 ![Порядок колонок за ключовим словом](./assets/keyword_order.png)
+
+Text
 
 : Дуже довгий опис таблиці Дуже довгий опис таблиці Дуже довгий опис таблиці Дуже довгий опис таблиці
 
@@ -83,6 +85,8 @@ external-chapter.md
 |             +-------+----------+
 |             | max   | 56.7 °C  |
 +-------------+-------+----------+
+
+Text
 
 : Test table 2
 
@@ -136,27 +140,5 @@ external-chapter.md
 | This is Contents 1  | This is Contents 2  | This is Contents 3      |
 | This is Contents 1  | This is Contents 2  | This is Contents 3      |
 | This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
-| This is Contents 1  | This is Contents 2  | This is Contents 3      |
+
+Text

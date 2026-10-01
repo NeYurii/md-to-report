@@ -50,20 +50,31 @@ $endfor$
 % Headings setup
 \RedeclareSectionCommand[
   font=\textbf\normalsize\rmfamily\Centering,
-  beforeskip=33.6pt, % font size (14) * line height (2) * base line height (1.2) = 33.6pt
-  afterskip=33.6pt,
-  indent=0pt
+  style=section,
+  afterindent=true,
+  beforeskip=33.6pt,
+  afterskip=33.6pt, % font size (14) * line height (2) * base line height (1.2)
+]{chapter}
+\RedeclareSectionCommand[
+  font=\normalfont\normalsize\rmfamily\RaggedRight,
+  indent=\parindent,
+  afterindent=true,
+  runin=false,
+  beforeskip=\baselineskip,
+  afterskip=0pt,
 ]{section}
 \RedeclareSectionCommand[
   font=\normalfont\normalsize\rmfamily\RaggedRight,
-  beforeskip=1pt,
-  afterskip=1pt
+  indent=\parindent,
+  afterindent=true,
+  runin=false,
+  beforeskip=0pt,
+  afterskip=4.2pt,
 ]{subsection}
 
 % Code snippets style
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-  fontsize=\singlespacing\footnotesize,
-  baselinestretch=1,
+  fontsize=\footnotesize\singlespacing,
   commandchars=\\\{\}
 }
 
@@ -94,7 +105,7 @@ $endfor$
 % Tables setup
 \AtBeginEnvironment{longtable}{\singlespacing\small\rmfamily}
 \setlength{\LTpost}{0pt}
-\setlength{\LTpre}{33.6pt} % font size (14) * line height (2) * base line height (1.2) = 25.2
+\setlength{\LTpre}{\baselineskip}
 
 % section numbering
 $if(numbersections)$
@@ -120,7 +131,7 @@ $if(pdf-trailer-id)$
 \fi
 $endif$
 
-\newcommand{\emptyline}{\vspace*{25.2pt}} % font size (14) * line height (1.5) * base line height (1.2) = 25.2
+\newcommand{\emptyline}{\vspace*{\baselineskip}}
 
 \onehalfspacing
 
