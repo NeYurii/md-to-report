@@ -38,6 +38,20 @@ Long text long text long text long text long text long text long text long text 
 
 Реалізувати просту шифруючу таблицю (запис по рядках, читання по стовпцях).
 
+- This
+- Is
+- THe
+- List
+
+  Paragraph inside list Paragraph inside list Paragraph inside list Paragraph inside list Paragraph inside list Paragraph inside list
+
+- Long item name Long item name Long item name Long item name Long item name Long item name Long item name
+
+1. This
+1. Is
+1. THe
+1. List
+
 ```zig
 //! Write by rows, read by cols
 const std = @import("std");

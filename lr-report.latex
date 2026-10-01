@@ -7,8 +7,8 @@ $passoptions.latex()$
 
 % Page style, reference in KOMA Script docs
 \documentclass[
-  usegeometry=true,
-  fontsize=14pt,
+  usegeometry = true,
+  fontsize = 14pt,
 ]{$documentclass$} % documentclass must stay in markdown, or some things will be broken
 
 % No page numbers
@@ -17,11 +17,11 @@ $passoptions.latex()$
 % Page margins (for main document part)
 \usepackage[
   portrait,
-  paper=a4paper,
-  top=20mm,
-  bottom=10mm,
-  left=25mm,
-  right=10mm
+  paper = a4paper,
+  top = 20mm,
+  bottom = 10mm,
+  left = 25mm,
+  right = 10mm,
 ]{geometry}
 
 % Some needed packages loading
@@ -49,33 +49,33 @@ $endfor$
 
 % Headings setup
 \RedeclareSectionCommand[
-  font=\textbf\normalsize\rmfamily\Centering,
-  style=section,
-  afterindent=true,
-  beforeskip=33.6pt,
-  afterskip=33.6pt, % font size (14) * line height (2) * base line height (1.2)
+  font = \textbf\normalsize\rmfamily\Centering,
+  style = section,
+  afterindent = true,
+  beforeskip = 33.6pt,
+  afterskip = 33.6pt, % font size (14) * line height (2) * base line height (1.2)
 ]{chapter}
 \RedeclareSectionCommand[
-  font=\normalfont\normalsize\rmfamily\RaggedRight,
-  indent=\parindent,
-  afterindent=true,
-  runin=false,
-  beforeskip=\baselineskip,
-  afterskip=0pt,
+  font = \normalfont\normalsize\rmfamily\RaggedRight,
+  indent = \parindent,
+  afterindent = true,
+  runin = false,
+  beforeskip = \baselineskip,
+  afterskip = 0pt,
 ]{section}
 \RedeclareSectionCommand[
-  font=\normalfont\normalsize\rmfamily\RaggedRight,
-  indent=\parindent,
-  afterindent=true,
-  runin=false,
-  beforeskip=0pt,
-  afterskip=4.2pt,
+  font = \normalfont\normalsize\rmfamily\RaggedRight,
+  indent = \parindent,
+  afterindent = true,
+  runin = false,
+  beforeskip = 0pt,
+  afterskip = 4.2pt,
 ]{subsection}
 
 % Code snippets style
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
-  fontsize=\footnotesize\singlespacing,
-  commandchars=\\\{\}
+  fontsize = \footnotesize\singlespacing,
+  commandchars = \\\{\},
 }
 
 % Table and figure caption format
@@ -83,24 +83,44 @@ $endfor$
 \DeclareCaptionFormat{custom}{#1 #2 #3}
 \DeclareCaptionLabelSeparator{dashsep}{-}
 \captionsetup{
-  format=custom,
-  singlelinecheck=false,
-  labelsep=dashsep,
-  font={normalsize,onehalfspacing}
+  format = custom,
+  singlelinecheck = false,
+  labelsep = dashsep,
+  font = {normalsize,onehalfspacing},
 }
 \counterwithout{figure}{section}
 \captionsetup[figure]{
-  justification=Centering,
-  position=below,
-  name=Рисунок
+  justification = Centering,
+  position = below,
+  name = Рисунок,
 }
 \counterwithout{table}{section}
 \captionsetup[table]{
-  justification=RaggedRight,
-  hangindent=2.64cm,
-  position=above,
-  name=Таблиця
+  justification = RaggedRight,
+  hangindent = 2.64cm,
+  position = above,
+  name = Таблиця,
 }
+
+% List setup
+\usepackage{enumitem}
+
+\setlist{
+  align=left, % align of label to labelindent
+  leftmargin = 0pt,
+  rightmargin = 0pt,
+  listparindent = \labelwidth+\labelsep,
+  labelindent = \parindent,
+  labelwidth = *,
+  itemindent = 0pt,
+  topsep = 0pt,
+  partopsep = 0pt,
+  parsep = 0pt,
+  itemsep = 0pt,
+}
+\setlist[itemize]{label = -}
+\setlist[enumerate]{label = \arabic*.}
+
 
 % Tables setup
 \AtBeginEnvironment{longtable}{\singlespacing\small\rmfamily}
@@ -141,7 +161,7 @@ $endif$
 %%%%%% Title page %%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-\newgeometry{top=20mm,bottom=20mm,left=25mm,right=10mm}
+\newgeometry{top = 20mm, bottom = 20mm, left = 25mm, right = 10mm}
 
 \begin{Center}
     \textbf{Міністерство освіти і науки України}
