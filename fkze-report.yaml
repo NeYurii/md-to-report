@@ -1,0 +1,5 @@
+pdf-engine: weasyprint
+template: fkze-report.html
+standalone: true
+filters:
+- include-files.lua

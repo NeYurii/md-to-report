@@ -1,9 +1,0 @@
-pdf-engine: lualatex
-template: lr-report.latex
-filters:
-- include-files.lua
-- table-bold-head.lua
-- table-vrules.lua
-variables:
-  documentclass: scrreprt
-  indent: true

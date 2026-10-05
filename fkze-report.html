@@ -1,0 +1,415 @@
+<!doctype html>
+<html $if(lang)$ lang="$lang$" xml:lang="$lang$" $endif$ $if(dir)$ dir="$dir$" $endif$>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc $pandoc-version$" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+$for(author-meta)$
+    <meta name="author" content="$author-meta$" />
+$endfor$
+
+$if(date-meta)$
+    <meta name="dcterms.date" content="$date-meta$" />
+$endif$
+
+$if(keywords)$
+    <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+$endif$
+
+$if(description-meta)$
+    <meta name="description" content="$description-meta$" />
+$endif$
+    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+    <style>
+      /* Variables */
+      :root {
+          --text-color: #000;
+          --text-shaded-color: #666;
+          --bg-color: #fff;
+          --link-color: var(--text-color);
+          --link-visited-color: var(--text-color);
+          --border-color: #000;
+
+          --body-font-size: 14pt;
+          --body-font-height: 1.7; /* 0.2 + 0.5 */
+          --code-font-size: 10pt;
+          --code-font-height: 0.9;
+          --table-font-size: 12pt;
+          --table-font-height: 1;
+
+          --paragraph-indent: 1cm;
+
+          --table-label: "Таблиця";
+          --figure-label: "Рисунок";
+
+          --serif-font: $if(mainfont)$ $mainfont$ $else$ serif $endif$;
+          --sans-font: $if(sansfont)$ $mainfont$ $else$ sans $endif$;
+          --mono-font: $if(monofont)$ $monofont$ $else$ monospace $endif$;
+      }
+
+      /* Pages setup */
+      @page {
+          size: A4 portrait;
+          margin: 20mm 10mm 10mm 25mm; /* top, right, bottom, left */
+      }
+      @page :first {
+          size: A4 portrait;
+          margin: 20mm 10mm 20mm 25mm; /* top, right, bottom, left */
+      }
+
+      /* Styling */
+      html {
+          font-size: var(--body-font-size);
+          line-height: var(--body-font-height);
+          color: var(--text-color);
+          background-color: var(--bg-color);
+          font-family: var(--serif-font);
+      }
+      body {
+          margin: 0;
+          padding: 0;
+          font-kerning: normal;
+          hyphens: auto;
+      }
+
+      article {
+          counter-reset: table;
+          counter-reset: figure;
+      }
+
+      #title-page {
+          height: 100vh;
+          p {
+              margin: 0;
+              text-indent: 0;
+          }
+          table.layout-table {
+              margin-left: 8.5cm;
+              border-collapse: collapse;
+              border: 0;
+              td, th {
+                  border: 0;
+                  padding: 0;
+                  vertical-align: top;
+              }
+              td {
+                  padding-right: 1ex;
+              }
+          }
+          footer {
+              text-align: center;
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              position: absolute;
+              bottom: 0;
+          }
+      }
+
+      #document {
+          overflow-wrap: break-word;
+
+          .lab-work-info {
+              text-indent: var(--paragraph-indent);
+              p {
+                  display: inline;
+                  text-indent: 0;
+              }
+          }
+
+          h1 {
+              text-indent: 0;
+              text-align: center;
+              font-weight: bold;
+              margin: 1.2em 0; /* vertical, horizontal */
+              font-size: var(--body-font-size);
+          }
+          h2, h3, h4 {
+              text-indent: var(--paragraph-indent);
+              font-weight: normal;
+              font-size: var(--body-font-size);
+              text-align: left;
+              margin-top: 1em;
+          }
+
+          p {
+              margin: 0;
+              text-align: justify;
+              text-indent: var(--paragraph-indent);
+          }
+          a {
+              color: var(--link-color);
+          }
+          a:visited {
+              color: var(--link-visited-color:);
+          }
+
+          ol, ul {
+              list-style-position: inside;
+              margin: 0;
+              padding: 0;
+              li {
+                  text-indent: var(--paragraph-indent);
+              }
+              li > :first-child {
+                  display: inline;
+                  text-indent: 0;
+              }
+          }
+
+          code {
+              text-indent: 0;
+              overflow: visible;
+              overflow-wrap: normal;
+              white-space: pre-wrap;
+              hyphens: manual;
+          }
+          pre {
+              text-indent: 0;
+              margin: 1em 0;
+              overflow: auto;
+              font-family: var(--mono-font);
+              font-size: var(--code-font-size);
+              line-height: var(--code-font-height);
+          }
+          .sourceCode { /* Souce code div */
+              background-color: transparent;
+              overflow: visible;
+          }
+          blockquote {
+              margin: 1em 0 1em 1.7em;
+              padding-left: 1em;
+              border-left: 2px solid #e6e6e6;
+              color: var(--text-shaded-color);
+          }
+
+          hr {
+              border: none;
+              border-top: 1px solid var(--border-color);
+              height: 1px;
+              margin: 1em 0;
+          }
+
+          figure {
+              margin: 1em 0;
+              text-align: center;
+              img {
+                  width: auto;
+              }
+              figcaption {
+                  width: 100%;
+              }
+              figcaption::before {
+                  counter-increment: figure;
+                  content: var(--figure-label) " " counter(figure) " - ";
+              }
+          }
+
+          table {
+              font-size: var(--table-font-size);
+              line-height: var(--table-font-height);
+              border-collapse: collapse;
+              margin-bottom: 1em;
+              width: 100%;
+
+              + table caption {
+                  margin-top: 0;
+              }
+
+              caption {
+                  text-align: justify;
+                  caption-side: top;
+                  font-size: var(--body-font-size);
+                  line-height: var(--body-font-height);
+                  margin-top: 1em;
+                  margin-left: calc(5.2em + var(--paragraph-indent));
+                  text-indent: -5.2em;
+              }
+              caption::before {
+                  counter-increment: table;
+                  content: var(--table-label) " " counter(table) " - ";
+              }
+              th, td {
+                  border: 1px solid var(--border-color);
+                  text-indent: 0;
+                  vertical-align: middle;
+                  padding: 0.16em 0.24em;
+              }
+          }
+
+          img {
+              max-width: 100%;
+          }
+          svg {
+              height: auto;
+              max-width: 100%;
+          }
+      }
+
+
+      #TOC li {
+          list-style: none;
+      }
+      #TOC ul {
+          padding-left: 1.3em;
+      }
+      #TOC > ul {
+          padding-left: 0;
+      }
+      #TOC a:not(:hover) {
+          text-decoration: none;
+      }
+
+      span.smallcaps {
+          font-variant: small-caps;
+      }
+      div.columns {
+          display: flex;
+          gap: 1.5em;
+      }
+      div.column {
+          flex: auto;
+      }
+      @media screen {
+          div.columns{gap: min(4vw, 1.5em);}
+          div.column{overflow-x: auto;}
+      }
+      div.hanging-indent {
+          margin-left: 1.5em;
+          text-indent: -1.5em;
+      }
+      /*
+       * The extra [class] is a hack that increases specificity enough to
+       * override a similar rule in reveal.js
+       */
+      ul.task-list[class]{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        font-size: inherit;
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1.6em;
+        vertical-align: middle;
+      }
+$if(quotes)$
+      q { quotes: "“" "”" "‘" "’"; }
+$endif$
+
+$if(displaymath-css)$
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+$endif$
+
+/* CSS for syntax highlighting */
+$if(highlighting-css)$
+      $highlighting-css$
+$endif$
+
+$if(csl-css)$
+      $styles.citations.html()$
+$endif$
+    </style>
+
+$for(css)$
+    <link rel="stylesheet" href="$css$" />
+$endfor$
+
+$for(header-includes)$
+    $header-includes$
+$endfor$
+
+$if(math)$
+    $math$
+$endif$
+  </head>
+  <body>
+
+$for(include-before)$
+    $include-before$
+$endfor$
+
+$if(title)$
+    <header id="title-block-header">
+      <h1 class="title">$title$</h1>
+$if(subtitle)$
+      <p class="subtitle">$subtitle$</p>
+$endif$
+$for(author)$
+      <p class="author">$author$</p>
+$endfor$
+$if(date)$
+      <p class="date">$date$</p>
+$endif$
+$if(abstract)$
+      <div class="abstract">
+        <div class="abstract-title">$abstract-title$</div>
+        $abstract$
+      </div>
+$endif$
+    </header>
+$endif$
+$if(toc)$
+    <nav id="$idprefix$TOC" role="doc-toc">
+$if(toc-title)$
+      <h2 id="$idprefix$toc-title">$toc-title$</h2>
+$endif$
+$table-of-contents$
+    </nav>
+$endif$
+
+    <article id="title-page">
+      <center>
+        <p><b>Міністерство освіти і науки України</b></p>
+        <br/>
+        <p>Фаховий коледж зварювання та електроніки імені Є.О. Патона</p>
+        <br/><br/><br/><br/><br/>
+        <p><b>ЗВІТ</b></p>
+        <br/>
+        <p><b>З ЛАБОРАТОРНОЇ РОБОТИ №$worknumber$</b></p>
+        <br/>
+        <p>навчальної дисципліни</p>
+        <p>$subjectname$</p>
+        <p><u>ФКЗЕ. $specialtycode$$subjectacronym$$listnumber$. $worknumber$ЛР</u></p>
+        <br/><br/><br/><br/><br/>
+      </center>
+
+      <table class="layout-table">
+        <tr>
+          <td>Студент</td>
+          <td><u>$author$</u></td>
+        </tr>
+        <tr>
+          <td>Група</td>
+          <td><u>$group$</u></td>
+        </tr>
+        <tr>
+          <td>Перевірив</td>
+          <td><u>$lecturer$</u></td>
+        </tr>
+      </table>
+
+      <footer><p>$year$</p></footer>
+    </article>
+
+    <article id="document">
+$if(topic)$
+      <div class="lab-work-info"><b>Тема:</b> $topic$</div>
+$endif$
+$if(objective)$
+      <div class="lab-work-info"><b>Мета:</b> $objective$</div>
+$endif$
+$if(equipment)$
+      <div class="lab-work-info"><b>Обладнання:</b> $equipment$</div>
+$endif$
+
+$body$
+
+$if(conclusion)$
+      <br>
+      <div class="lab-work-info"><b>Висновок:</b> $conclusion$</div>
+$endif$
+    </article>
+
+$for(include-after)$
+    $include-after$
+$endfor$
+  </body>
+</html>

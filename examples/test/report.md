@@ -16,8 +16,7 @@ subjectacronym: SN
 worknumber: 17
 listnumber: 4
 
-topic: >
-  Тема
+topic: Тема
 
 objective: >
   Мета
