@@ -104,12 +104,11 @@ $endfor$
 
 % List setup
 \usepackage{enumitem}
-
 \setlist{
   align=left, % align of label to labelindent
   leftmargin = 0pt,
   rightmargin = 0pt,
-  listparindent = \labelwidth+\labelsep,
+  listparindent = \parindent,
   labelindent = \parindent,
   labelwidth = *,
   itemindent = 0pt,
@@ -118,8 +117,12 @@ $endfor$
   parsep = 0pt,
   itemsep = 0pt,
 }
-\setlist[itemize]{label = -}
-\setlist[enumerate]{label = \arabic*.}
+\setlist[itemize]{
+  label = {-\AddToHookNext{para/after}{\addvspace{\itemsep}}}
+}
+\setlist[enumerate]{
+  label = {\arabic*.\AddToHookNext{para/after}{\addvspace{\baselineskip}}}
+}
 
 
 % Tables setup

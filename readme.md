@@ -29,9 +29,12 @@ pandoc -o report.pdf report.md --template=./lr-report.latex --defaults=./lr-repo
 # Reference
 
 - [LaTex wiki](https://www.overleaf.com/learn)
-- [KOMA Script documentation](https://ctan.uni-eszterhazy.hu/tex-archive/macros/latex/contrib/koma-script/doc/scrguide-en.pdf#desc%3Amaincls.cmd.setkomafont)
 - [Pandoc manual](https://pandoc.org/MANUAL.html)
 - [Pandoc latex templates](https://pandoc-templates.org)
 - [common.latex() content](https://github.com/jgm/pandoc-templates/blob/master/common.latex)
+- [KOMA Script documentation](https://ctan.uni-eszterhazy.hu/tex-archive/macros/latex/contrib/koma-script/doc/scrguide-en.pdf)
 - [Setting up paragraphs](https://ftp.fi.muni.cz/pub/tex/CTAN/macros/latex/contrib/ragged2e/ragged2e.pdf)
+- [Setting up lists](https://mirrors.nxthost.com/ctan/macros/latex/contrib/enumitem/enumitem.pdf)
+- [Setting up captions](https://ftp.cvut.cz/CTAN/macros/latex/contrib/caption/caption.pdf)
 - Other latex packages documentation can be found from [CTAN](https://ctan.org/pkg)
+- [Filter functions](https://pandoc.org/lua-filters.html#module-pandoc)
