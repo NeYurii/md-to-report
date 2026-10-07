@@ -80,6 +80,8 @@ $endif$
 
       #title-page {
           height: 100vh;
+          hyphens: manual;
+
           p {
               margin: 0;
               text-indent: 0;
@@ -109,6 +111,8 @@ $endif$
 
       #document {
           overflow-wrap: break-word;
+          text-align: justify;
+          hyphens: auto;
 
           .lab-work-info {
               text-indent: var(--paragraph-indent);
@@ -135,7 +139,6 @@ $endif$
 
           p {
               margin: 0;
-              text-align: justify;
               text-indent: var(--paragraph-indent);
           }
           a {
@@ -236,7 +239,8 @@ $endif$
               }
 
               caption {
-                  text-align: justify;
+                  text-align: left;
+                  hyphens: manual;
                   caption-side: top;
                   font-size: var(--body-font-size);
                   line-height: var(--body-font-height);
