@@ -145,16 +145,34 @@ $endif$
               color: var(--link-visited-color:);
           }
 
+          ul {
+              list-style: none;
+              li::before {
+                  content: "- ";
+              }
+          }
+
           ol, ul {
               list-style-position: inside;
               margin: 0;
               padding: 0;
-              li {
+
+              > li {
                   text-indent: var(--paragraph-indent);
               }
-              li > :first-child {
+              > li > :first-child {
                   display: inline;
                   text-indent: 0;
+              }
+              ol, ul {
+                  > li {
+                      text-indent: calc(var(--paragraph-indent) * 2);
+                  }
+                  ol, ul {
+                      > li {
+                          text-indent: calc(var(--paragraph-indent) * 3);
+                      }
+                  }
               }
           }
 
