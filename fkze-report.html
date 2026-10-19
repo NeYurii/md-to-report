@@ -112,9 +112,9 @@ $endif$
           overflow-wrap: break-word;
           text-align: justify;
           hyphens: auto;
+          text-indent: var(--paragraph-indent);
 
           .lab-work-info {
-              text-indent: var(--paragraph-indent);
               p {
                   display: inline;
                   text-indent: 0;
@@ -129,7 +129,6 @@ $endif$
               font-size: var(--body-font-size);
           }
           h2, h3, h4 {
-              text-indent: var(--paragraph-indent);
               font-weight: normal;
               font-size: var(--body-font-size);
               text-align: left;
@@ -138,7 +137,6 @@ $endif$
 
           p {
               margin: 0;
-              text-indent: var(--paragraph-indent);
           }
           a {
               color: var(--link-color);
@@ -161,10 +159,10 @@ $endif$
 
               > li {
                   text-indent: var(--paragraph-indent);
-              }
-              > li > :first-child {
-                  display: inline;
-                  text-indent: 0;
+                  > :first-child {
+                      display: inline;
+                      text-indent: 0;
+                  }
               }
               ol, ul {
                   > li {
