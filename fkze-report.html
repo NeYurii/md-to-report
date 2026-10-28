@@ -43,9 +43,9 @@ $endif$
           --table-label: "Таблиця";
           --figure-label: "Рисунок";
 
-          --serif-font: $if(mainfont)$ $mainfont$ $else$ serif $endif$;
-          --sans-font: $if(sansfont)$ $mainfont$ $else$ sans $endif$;
-          --mono-font: $if(monofont)$ $monofont$ $else$ monospace $endif$;
+          --serif-font: $if(mainfont)$ $mainfont$, $endif$ "Times New Roman", "Liberation Serif", serif;
+          --sans-font: $if(sansfont)$ $sansfont$, $endif$ "Arial", "Liberation Sans", sans-serif;
+          --mono-font: $if(monofont)$ $monofont$, $endif$ "Courier New", "Liberation Mono", monospace;
       }
 
       /* Pages setup */
@@ -146,10 +146,7 @@ $endif$
           }
 
           ul {
-              list-style: none;
-              li::before {
-                  content: "- ";
-              }
+              list-style-type: "- ";
           }
 
           ol, ul {

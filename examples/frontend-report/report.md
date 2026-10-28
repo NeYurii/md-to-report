@@ -1,8 +1,4 @@
 ---
-mainfont: Liberation Serif
-sansfont: Liberation Sans
-monofont: Liberation Mono
-
 year: 2026 - 2027
 
 author: NeYurii
