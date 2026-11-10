@@ -15,6 +15,7 @@ subjectacronym: SN
 
 worknumber: 17
 listnumber: 4
+worktype: ЛР
 
 topic: Тема
 

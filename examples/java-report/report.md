@@ -11,6 +11,7 @@ subjectacronym: ТПJ
 
 worknumber: 5
 listnumber: 16
+worktype: ЛР
 
 topic: >
   Застосування успадкування при створенні об'єктно-орієнтованих

@@ -11,6 +11,7 @@ subjectacronym: РВЗ
 
 worknumber: 5
 listnumber: 16
+worktype: ЛР
 
 topic: Підключення стилів та основи CSS-селекторів
 
