@@ -9,9 +9,11 @@ specialtycode: 1234
 subjectname: ТЕХНОЛОГІЇ ПРОГРАМУВАННЯ МОВОЮ JAVA
 subjectacronym: ТПJ
 
+worktype: ЛР
+pagenums: yes
+
 worknumber: 5
 listnumber: 16
-worktype: ЛР
 
 topic: >
   Застосування успадкування при створенні об'єктно-орієнтованих

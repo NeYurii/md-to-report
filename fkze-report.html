@@ -52,10 +52,17 @@ $endif$
       @page {
           size: A4 portrait;
           margin: 20mm 10mm 10mm 25mm; /* top, right, bottom, left */
+          $if(pagenums)$
+          @top-right {
+              content: counter(page);
+              font-size: 10pt;
+          }
+          $endif$
       }
       @page :first {
           size: A4 portrait;
           margin: 20mm 10mm 20mm 25mm; /* top, right, bottom, left */
+          @top-right {content: "";}
       }
 
       /* Styling */
